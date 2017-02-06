@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Obituaries',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -56,39 +56,53 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-        <div style="display: flex; flex-direction: row; padding: 2px; margin: auto">
+        <div style="display: flex; flex-direction: row; padding: 2px; margin: 5px;">
             <div style="width: 300px;">
                 <?php
+                if(( ! Yii::$app->user->isGuest) && (\Yii::$app->user->can('admin')))
                 echo SideNav::widget([
                     'type' => SideNav::TYPE_DEFAULT,
                     'heading' => 'Options',
                     'items' => [
                         [
                             'url' => '#',
-                            'label' => 'Home',
-                            'icon' => 'home'
+                            'label' => 'Orders',
+                            'icon' => 'usd'
                         ],
                         [
-                            'label' => 'Help',
-                            'icon' => 'question-sign',
+                            'url' => '#',
+                            'label' => 'Clients',
+                            'icon' => 'user'
+                        ],
+                        [
+                            'label' => 'Templates',
+                            'icon' => 'briefcase',
                             'items' => [
-                                ['label' => 'About', 'icon'=>'info-sign', 'url'=>'#'],
-                                ['label' => 'Contact', 'icon'=>'phone', 'url'=>'#'],
+                                ['label' => 'Categorys', 'icon'=>'indent-left', 'url'=>'#'],
+                                ['label' => 'Booklets', 'icon'=>'align-left', 'url'=>'#'],
+                                ['label' => 'Pages', 'icon'=>'credit-card', 'url'=>'#'],
                             ],
                         ],
                         [
-                            'label' => 'Help2',
-                            'icon' => 'question-sign',
-                            'items' => [
-                                ['label' => 'About', 'icon'=>'info-sign', 'url'=>'#'],
-                                ['label' => 'Contact', 'icon'=>'phone', 'url'=>'#'],
-                            ],
+                            'url' => '#',
+                            'label' => 'Static pages options',
+                            'icon' => 'file'
+                        ],
+                        [
+                            'url' => '#',
+                            'label' => 'Dynamic pages',
+                            'icon' => 'save-file'
+                        ],
+                        [
+                            'url' => '#',
+                            'label' => 'Files',
+                            'icon' => 'folder-open'
                         ],
                     ],
                 ]);
                 ?>
             </div>
-            <div>
+            <div style="flex-grow: 1; ">
                 <?= Breadcrumbs::widget([
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ]) ?>
