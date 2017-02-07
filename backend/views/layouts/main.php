@@ -62,12 +62,12 @@ AppAsset::register($this);
                     'heading' => 'Options',
                     'items' => [
                         [
-                            'url' => '#',
+                            'url' => '/order/index',
                             'label' => 'Orders',
                             'icon' => 'usd'
                         ],
                         [
-                            'url' => '#',
+                            'url' => '/client/index',
                             'label' => 'Clients',
                             'icon' => 'user'
                         ],
@@ -75,18 +75,18 @@ AppAsset::register($this);
                             'label' => 'Templates',
                             'icon' => 'briefcase',
                             'items' => [
-                                ['label' => 'Categorys', 'icon'=>'indent-left', 'url'=>'#'],
-                                ['label' => 'Booklets', 'icon'=>'align-left', 'url'=>'#'],
-                                ['label' => 'Pages', 'icon'=>'credit-card', 'url'=>'#'],
+                                ['label' => 'Categorys', 'icon'=>'indent-left', 'url'=>'/category/index'],
+                                ['label' => 'Booklets', 'icon'=>'align-left', 'url'=>'/booklet/index'],
+                                ['label' => 'Pages booklet', 'icon'=>'credit-card', 'url'=>'/page/index'],
                             ],
                         ],
                         [
-                            'url' => '#',
+                            'url' => '/options/index',
                             'label' => 'Static pages options',
                             'icon' => 'file'
                         ],
                         [
-                            'url' => '#',
+                            'url' => '/site-page/index',
                             'label' => 'Dynamic pages',
                             'icon' => 'save-file'
                         ],
@@ -104,7 +104,9 @@ AppAsset::register($this);
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ]) ?>
                 <?= Alert::widget() ?>
-                <?= $content ?>
+                <div style="padding: 10px;">
+                    <?= $content ?>
+                </div>
             </div>
         </div>
 </div>
