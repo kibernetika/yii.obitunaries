@@ -20,7 +20,7 @@ class OrderItemSearch extends OrderItem
         return [
             [['id_order_item_oi', 'id_order_io', 'id_booklet_io', 'quantity_oi', 'id_category_io'], 'integer'],
             [['price_io'], 'number'],
-            [['comments_io'], 'safe'],
+            [['comments_io', 'type_io'], 'safe'],
         ];
     }
 
@@ -68,7 +68,8 @@ class OrderItemSearch extends OrderItem
             'id_category_io' => $this->id_category_io,
         ]);
 
-        $query->andFilterWhere(['like', 'comments_io', $this->comments_io]);
+        $query->andFilterWhere(['like', 'comments_io', $this->comments_io])
+            ->andFilterWhere(['like', 'type_io', $this->type_io]);
 
         return $dataProvider;
     }

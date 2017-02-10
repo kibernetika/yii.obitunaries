@@ -12,6 +12,7 @@ use common\widgets\Alert;
 use kartik\sidenav\SideNav;
 
 AppAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -31,6 +32,7 @@ AppAsset::register($this);
     NavBar::begin([
         'brandLabel' => 'Obituaries',
         'brandUrl' => Yii::$app->homeUrl,
+//        'brandUrl' => Yii::$app->urlFrontendManager->createAbsoluteUrl('site/index'),
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -75,9 +77,8 @@ AppAsset::register($this);
                             'label' => 'Templates',
                             'icon' => 'briefcase',
                             'items' => [
-                                ['label' => 'Categorys', 'icon'=>'indent-left', 'url'=>'/category/index'],
+                                ['label' => 'Categories', 'icon'=>'indent-left', 'url'=>'/category/index'],
                                 ['label' => 'Booklets', 'icon'=>'align-left', 'url'=>'/booklet/index'],
-                                ['label' => 'Pages booklet', 'icon'=>'credit-card', 'url'=>'/page/index'],
                             ],
                         ],
                         [
@@ -91,7 +92,7 @@ AppAsset::register($this);
                             'icon' => 'save-file'
                         ],
                         [
-                            'url' => '#',
+                            'url' => '/site/uploads',
                             'label' => 'Files',
                             'icon' => 'folder-open'
                         ],

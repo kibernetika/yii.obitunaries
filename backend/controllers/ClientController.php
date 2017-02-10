@@ -3,16 +3,19 @@
 namespace backend\controllers;
 
 use Yii;
+use common\models\Address;
+use backend\models\AddressSearch;
 use common\models\Client;
 use backend\models\ClientSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ArrayDataProvider;
 
 /**
  * ClientController implements the CRUD actions for Client model.
  */
-class ClientController extends Controller
+class ClientController extends BaseAdminController
 {
     /**
      * @inheritdoc
@@ -37,7 +40,6 @@ class ClientController extends Controller
     {
         $searchModel = new ClientSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -51,8 +53,16 @@ class ClientController extends Controller
      */
     public function actionView($id)
     {
+        $client = $this->findModel($id);
+        $address = $client->addressCas;
+        $searchModel = new AddressSearch();
+
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $address,
+        ]);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $client, 'dataProvider' => $dataProvider, 'searchModel' => $searchModel,
         ]);
     }
 
@@ -64,7 +74,6 @@ class ClientController extends Controller
     public function actionCreate()
     {
         $model = new Client();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_client_cl]);
         } else {

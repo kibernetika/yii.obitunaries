@@ -14,6 +14,7 @@ use Yii;
  * @property string $price_io
  * @property string $comments_io
  * @property integer $id_category_io
+ * @property string $type_io
  *
  * @property Booklet $idBookletIo
  * @property Category $idCategoryIo
@@ -43,7 +44,7 @@ class OrderItem extends \yii\db\ActiveRecord
             [['id_order_io', 'quantity_oi', 'price_io', 'id_category_io'], 'required'],
             [['id_order_io', 'id_booklet_io', 'quantity_oi', 'id_category_io'], 'integer'],
             [['price_io'], 'number'],
-            [['comments_io'], 'string'],
+            [['comments_io', 'type_io'], 'string'],
             [['id_booklet_io'], 'exist', 'skipOnError' => true, 'targetClass' => Booklet::className(), 'targetAttribute' => ['id_booklet_io' => 'id_booklet_bk']],
             [['id_category_io'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['id_category_io' => 'id_category_ct']],
             [['id_order_io'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['id_order_io' => 'id_order_or']],
@@ -63,6 +64,7 @@ class OrderItem extends \yii\db\ActiveRecord
             'price_io' => 'Price Io',
             'comments_io' => 'Comments Io',
             'id_category_io' => 'Id Category Io',
+            'type_io' => 'Type Io',
         ];
     }
 
@@ -128,14 +130,5 @@ class OrderItem extends \yii\db\ActiveRecord
     public function getIdPropertyValues()
     {
         return $this->hasMany(PropertieValue::className(), ['id_property_value_vl' => 'id_property_value'])->viaTable('order_propertie_value', ['id_order_item' => 'id_order_item_oi']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return OrderItemQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new OrderItemQuery(get_called_class());
     }
 }

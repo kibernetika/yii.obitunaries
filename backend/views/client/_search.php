@@ -13,6 +13,9 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+        'options' => [
+            'data-pjax' => 1
+        ],
     ]); ?>
 
     <?= $form->field($model, 'id_client_cl') ?>
@@ -21,11 +24,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'second_name_cl') ?>
 
-    <?= $form->field($model, 'id_address_cl') ?>
-
     <?= $form->field($model, 'mob_phone_cl') ?>
 
-    <?php // echo $form->field($model, 'annotation_cl') ?>
+    <?= $form->field($model, 'annotation_cl') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

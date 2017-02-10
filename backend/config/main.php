@@ -11,7 +11,10 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+
+    ],
+    'defaultRoute' => 'site/index',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -41,9 +44,19 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '/' => 'site/index',
+                '' => '',
+                '/' => 'order/index',
+//                '<controller>/<action>'
             ],
         ],
+//        'urlFrontendManager' => [
+//            'class' => 'yii\web\UrlManager',
+//            'enablePrettyUrl' => true,
+//            'showScriptName' => false,
+//            'rules' => [
+//                '' => '',
+//            ],
+//        ],
 //        'urlManagerFrontend' => [
 //            'class' => 'yii\web\UrlManager',
 //            'baseUrl' => 'http://yii.obitunaries',

@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * OrderPropertieValueController implements the CRUD actions for OrderPropertieValue model.
  */
-class OrderPropertieValueController extends Controller
+class OrderPropertieValueController extends BaseAdminController
 {
     /**
      * @inheritdoc

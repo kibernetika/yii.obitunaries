@@ -24,6 +24,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id_category_io')->textInput() ?>
 
+    <?= $form->field($model, 'type_io')->dropDownList([ 'Template' => 'Template', 'File' => 'File', 'Text and image' => 'Text and image', ], ['prompt' => '']) ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

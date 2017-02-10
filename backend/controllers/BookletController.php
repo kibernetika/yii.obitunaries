@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * BookletController implements the CRUD actions for Booklet model.
  */
-class BookletController extends Controller
+class BookletController extends BaseAdminController
 {
     /**
      * @inheritdoc

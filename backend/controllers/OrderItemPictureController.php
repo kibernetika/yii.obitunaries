@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * OrderItemPictureController implements the CRUD actions for OrderItemPicture model.
  */
-class OrderItemPictureController extends Controller
+class OrderItemPictureController extends BaseAdminController
 {
     /**
      * @inheritdoc

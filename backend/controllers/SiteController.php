@@ -6,11 +6,13 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\UploadsForm;
+use yii\web\UploadedFile;
 
 /**
  * Site controller
  */
-class SiteController extends BaseAdminController
+class SiteController extends Controller
 {
     /**
      * @inheritdoc
@@ -26,7 +28,7 @@ class SiteController extends BaseAdminController
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'uploads', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -60,7 +62,8 @@ class SiteController extends BaseAdminController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->redirect('order/index');
+//        return $this->render('index');
     }
 
     /**
@@ -95,4 +98,18 @@ class SiteController extends BaseAdminController
 
         return $this->goHome();
     }
+
+    public function actionUploads()
+    {
+        $model = new UploadsForm();
+        if (Yii::$app->request->isPost) {
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+        return $this->render('uploads', ['model' => $model]);
+    }
+
 }

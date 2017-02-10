@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use common\models\Address;
 
 /**
- * AddressSearch represents the model behind the search form about `common\models\Address`.
+ * AddressSearch represents the model behind the search form of `common\models\Address`.
  */
 class AddressSearch extends Address
 {

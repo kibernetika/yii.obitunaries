@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'price_io',
             'comments_io:ntext',
             'id_category_io',
+            'type_io',
         ],
     ]) ?>
 

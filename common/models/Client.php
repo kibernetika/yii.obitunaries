@@ -7,14 +7,14 @@ use Yii;
 /**
  * This is the model class for table "client".
  *
- * @property integer $id_client_cl
+ * @property int $id_client_cl
  * @property string $first_name_cl
  * @property string $second_name_cl
- * @property integer $id_address_cl
  * @property string $mob_phone_cl
  * @property string $annotation_cl
  *
- * @property Address $idAddressCl
+ * @property ClientAdddress[] $clientAdddresses
+ * @property Address[] $addressCas
  * @property Order[] $orders
  */
 class Client extends \yii\db\ActiveRecord
@@ -33,12 +33,10 @@ class Client extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['first_name_cl', 'second_name_cl', 'id_address_cl'], 'required'],
-            [['id_address_cl'], 'integer'],
+            [['first_name_cl', 'second_name_cl'], 'required'],
             [['first_name_cl', 'second_name_cl'], 'string', 'max' => 50],
             [['mob_phone_cl'], 'string', 'max' => 20],
             [['annotation_cl'], 'string', 'max' => 255],
-            [['id_address_cl'], 'exist', 'skipOnError' => true, 'targetClass' => Address::className(), 'targetAttribute' => ['id_address_cl' => 'id_address_ad']],
         ];
     }
 
@@ -48,21 +46,28 @@ class Client extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_client_cl' => 'Id Client Cl',
-            'first_name_cl' => 'First Name Cl',
-            'second_name_cl' => 'Second Name Cl',
-            'id_address_cl' => 'Id Address Cl',
-            'mob_phone_cl' => 'Mob Phone Cl',
-            'annotation_cl' => 'Annotation Cl',
+            'id_client_cl' => 'Id',
+            'first_name_cl' => 'First name',
+            'second_name_cl' => 'Second name',
+            'mob_phone_cl' => 'Phone',
+            'annotation_cl' => 'Annotation',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdAddressCl()
+    public function getClientAdddresses()
     {
-        return $this->hasOne(Address::className(), ['id_address_ad' => 'id_address_cl']);
+        return $this->hasMany(ClientAdddress::className(), ['id_client_ca' => 'id_client_cl']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAddressCas()
+    {
+        return $this->hasMany(Address::className(), ['id_address_ad' => 'id_address_ca'])->viaTable('client_adddress', ['id_client_ca' => 'id_client_cl']);
     }
 
     /**

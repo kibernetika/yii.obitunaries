@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * CetogoryController implements the CRUD actions for Category model.
  */
-class CategoryController extends Controller
+class CategoryController extends BaseAdminController
 {
     /**
      * @inheritdoc

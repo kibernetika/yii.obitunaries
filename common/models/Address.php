@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "address".
  *
- * @property integer $id_address_ad
+ * @property int $id_address_ad
  * @property string $country_ad
  * @property string $state_ad
  * @property string $city_ad
@@ -19,6 +19,8 @@ use Yii;
  * @property string $receiver_name_ad
  *
  * @property Client[] $clients
+ * @property ClientAdddress[] $clientAdddresses
+ * @property Client[] $clientCas
  * @property Order[] $orders
  */
 class Address extends \yii\db\ActiveRecord
@@ -71,6 +73,22 @@ class Address extends \yii\db\ActiveRecord
     public function getClients()
     {
         return $this->hasMany(Client::className(), ['id_address_cl' => 'id_address_ad']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientAdddresses()
+    {
+        return $this->hasMany(ClientAdddress::className(), ['id_address_ca' => 'id_address_ad']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClientCas()
+    {
+        return $this->hasMany(Client::className(), ['id_client_cl' => 'id_client_ca'])->viaTable('client_adddress', ['id_address_ca' => 'id_address_ad']);
     }
 
     /**

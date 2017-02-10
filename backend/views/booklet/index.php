@@ -29,9 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'description_bk',
             'path_to_preview_bk:ntext',
             'path_to_pdf_bk:ntext',
-            // 'id_cateory_bk',
-            // 'price_bk',
-            // 'active_bk:boolean',
+             'id_cateory_bk',
+             'price_bk',
+             'active_bk:boolean',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

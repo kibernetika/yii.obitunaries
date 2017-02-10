@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * PropertieValueController implements the CRUD actions for PropertieValue model.
  */
-class PropertieValueController extends Controller
+class PropertieValueController extends BaseAdminController
 {
     /**
      * @inheritdoc

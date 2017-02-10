@@ -40,6 +40,18 @@ class BaseAdminController extends Controller
         ];
     }
 
+
+    public function beforeAction($action)
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect('/site/login');
+        }
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * @inheritdoc
      */
@@ -51,4 +63,5 @@ class BaseAdminController extends Controller
             ],
         ];
     }
+
 }

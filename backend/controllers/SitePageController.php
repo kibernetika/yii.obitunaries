@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * SitePageController implements the CRUD actions for SitePage model.
  */
-class SitePageController extends Controller
+class SitePageController extends BaseAdminController
 {
     /**
      * @inheritdoc

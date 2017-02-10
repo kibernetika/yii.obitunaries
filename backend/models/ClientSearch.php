@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use common\models\Client;
 
 /**
- * ClientSearch represents the model behind the search form about `common\models\Client`.
+ * ClientSearch represents the model behind the search form of `common\models\Client`.
  */
 class ClientSearch extends Client
 {
@@ -18,7 +18,7 @@ class ClientSearch extends Client
     public function rules()
     {
         return [
-            [['id_client_cl', 'id_address_cl'], 'integer'],
+            [['id_client_cl'], 'integer'],
             [['first_name_cl', 'second_name_cl', 'mob_phone_cl', 'annotation_cl'], 'safe'],
         ];
     }
@@ -60,7 +60,6 @@ class ClientSearch extends Client
         // grid filtering conditions
         $query->andFilterWhere([
             'id_client_cl' => $this->id_client_cl,
-            'id_address_cl' => $this->id_address_cl,
         ]);
 
         $query->andFilterWhere(['like', 'first_name_cl', $this->first_name_cl])
